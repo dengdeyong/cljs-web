@@ -6,6 +6,6 @@ cljs-web
 
 ##开始
 
-在项目目录执行命令'lein cljsbuild auto'生成js文件
+在项目目录执行命令`lein cljsbuild auto`生成js文件
 
-用浏览器打开'resources/public/index.html'即可看到效果，点击下面导航看到移动效果
+用浏览器打开`resources/public/index.html`即可看到效果，点击下面导航看到移动效果
