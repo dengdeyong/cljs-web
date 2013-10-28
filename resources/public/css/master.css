@@ -1,0 +1,259 @@
+@charset "UTF-8";
+body,html {
+	width:100%;
+	height:100%;
+	margin:0px;
+	padding:0px;
+	font-family:"黑体",Arial, Helvetica, sans-serif;
+	font-size:14px;
+}
+h1,h2,h3,h4,p,ul,li{
+	margin:0px;
+	padding:0px;
+}
+ul,li{
+	list-style:none;
+}
+/*=====================页面顶部样式开始=========================*/
+.top{
+	position:absolute;
+	width:100%;
+	height:26px;
+	left:0px;
+	top:0px;
+	z-index:10001;
+}
+.top-l,.top-r{
+	position:relative;
+	float:left;
+	width:50%;
+	height:100%;
+}
+.top-l-c{
+	margin-right:140px;
+	height:100%;
+	background:url(../images/top_bg_l.png) right top no-repeat;
+}
+.top-r-c{
+	margin-left:140px;
+	height:100%;
+	background:url(../images/top_bg_r.png) left top no-repeat;
+}
+.logo{
+	position:absolute;
+	display:block;
+	height:132px;
+	width:337px;
+	padding-top:18px;
+	right:-168px;
+	top:0px;
+	background:url(../images/logo_bg.png) left top no-repeat;
+}
+.logo a{
+	display:block;
+	width:100%;
+	height:100%;
+	background:url(../images/logo.png) center top no-repeat;
+	overflow:hidden;
+}
+.main{
+	position:relative;
+	width:100%;
+	height:100%;
+	background:#52166B url(../images/bg.png) center top repeat-y;
+	overflow:hidden;
+}
+/*=====================页面顶部样式结束=========================*/
+/*=====================内容区样式开始=========================*/
+.mainbg{
+	width:100%;
+	height:100%;
+}
+.mainbg div{
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:100%;
+	height:100%;
+}
+.mainbg1{
+	background:url(../images/bg2.png) repeat;
+}
+.mainbg2{
+	background:url(../images/bg3.png) center repeat-x;
+}
+/*=====================内容区样式结束=========================*/
+/*=====================底部菜单样式开始=========================*/
+.menu-nav{
+	position:absolute;
+	width:100%;
+	height:75px;
+	left:0px;
+	bottom:0px;
+	background:url(../images/menu_bot_bg.png) left bottom repeat-x;
+	z-index:99999;
+}
+.ul-nav{
+	width:700px;
+	height:74px;
+	margin:0px auto;
+	background:url(../images/li_bg.png) left bottom no-repeat;
+}
+.ul-nav li{
+	float:left;
+	width:100px;
+	height:74px;
+	background:url(../images/li_bg.png) right bottom no-repeat;
+	outline:none;
+}
+.ul-nav li a{
+	float:left;
+	display:block;
+	width:94px;
+	padding:0px 3px;
+	height:100%;
+	text-decoration:none;
+}
+.ul-nav li a.active,.ul-nav li a.active:hover{
+	background:url(../images/active_li.png) center 8px no-repeat;
+}
+.ul-nav li a:hover{
+	background:url(../images/hover_li.png) left bottom repeat-x;
+}
+.ul-nav li span{
+	display:block;
+	width:100%;
+	margin-top:36px;
+	text-align:center;
+	line-height:24px;
+	color:#fff;
+	text-decoration:none;
+}
+/*=====================底部菜单样式结束=========================*/
+.content{
+	position:absolute;
+	width:100%;
+	height:100%;
+	left:0px;
+	top:0px;
+	z-index:500;
+}
+.content-wrap{
+	position:relative;
+	float:left;
+	width:100%;
+	height:100%;
+	overflow:hidden;
+}
+.content-in,.home-wrap{
+	position:absolute;
+	width:986px;
+	height:491px;
+	left:50%;
+	top:50%;
+	margin:-245px 0px 0px -493px;
+	background:url(../images/coment_bg.png) center top no-repeat;
+}
+.content-in h1{
+	padding:10px;
+}
+ /*=====================首页图片切换样式开始===========================*/
+.home-wrap{
+	position:absolute;
+	width:805px;
+	height:488px;
+	margin:-244px 0px 0px -402px;
+	background:url(../images/mask.png) center top no-repeat;
+}
+.home-in{
+	position:relative;
+	float:left;
+	width:786px;
+	height:436px;
+	margin:7px 0px 0px 11px;
+	overflow:hidden;
+}
+.home-con{
+	float:left;
+	width:100%;
+}
+.home-con-in{
+	position:relative;
+	float:left;
+	width:100%;
+	height:436px;
+	overflow:hidden;
+}
+.home-con-main{
+	position:absolute;
+	width:100%;
+	height:100%;
+	left:0px;
+	top:0px;
+	z-index:8px;
+}
+.home-con-left{
+	position:absolute;
+	width:300px;
+	height:436px;
+	left:0px;
+	top:0px;
+	background:url(../images/desk_bg_s.png) left top no-repeat;
+	z-index:10;
+}
+.desc-c{
+	float:left;
+	width:270px;
+	padding:120px 20px 80px 20px;
+}
+.desc-c a{
+	text-decoration:none;
+	color:#fff;
+	text-decoration:none;
+	font-size:20px;
+	line-height:30px;
+}
+.desc-c a h2{
+	font-size:18px;
+	color:#fff;
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+.desc-text{
+	float:left;
+	width:100%;
+	padding:20px 0px 0px 0px;
+	line-height:16px;
+	color:#F7F7F7;
+	text-shadow:1px 1px 0 #000000;
+	font-size:12px;
+}
+.home-s{
+	position:absolute;
+	width:200px;
+	height:21px;
+	right:20px;
+	bottom:10px;
+	z-index:9;
+}
+.home-s a{
+	display:none;
+	float:left;
+	width:22px;
+	height:20px;
+	margin-left:140px;
+	background:url(../images/slide.png) left top no-repeat;
+	overflow:hidden;
+}
+.home-s a:hover{
+	background-position:left -20px;
+}
+.home-s a.next{
+	display:inline;
+	float:right;
+	margin:0px 10px 0px 0px;
+	background-position:right top;
+}
+.home-s a.next:hover{
+	background-position:right -20px;
+}
