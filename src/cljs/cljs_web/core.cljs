@@ -1,51 +1,50 @@
 (ns cljs-web.core
-(:require [clojure.browser.repl :as repl]
-          [jayq.core :as jq]))
-            
-(repl/connect "http://localhost:9000/repl")
+  (:use [webfui.framework :only [launch-app]]
+        [webfui.utilities :only [get-attribute clicked]])
+  (:use-macros [webfui.framework.macros :only [add-mouse-watch]]))
 
-(defn- get-client-width
-  []
-  (jq/width (jq/$ :body)))
+(def initial-state {:position 0})
 
-(def content-id "#j_content")
-(def content-wrap "#j_content .content-wrap")
-(def part-count (count (jq/$ content-wrap)))
-(def client-width (get-client-width))
+(defn get-client-width []
+  (.-clientWidth (.-body js/document)))
 
-(defn init-ui
-  "初始化内容区宽度，并设置宽度"
-  []
-  (let [el-content-wrap (jq/$ content-wrap)
-        el-content-main (jq/$ content-id)]
-   (jq/css el-content-wrap {:width (str client-width "px")})
-   (jq/css el-content-main {:width (str (* part-count client-width) "px")})))
+(def menu-nav [[:1 "网站首页" :nav]
+               [:2 "关于我们" :nav]
+               [:3 "业务体系" :nav]
+               [:4 "人才招聘" :nav]
+               [:5 "公司动态" :nav]
+               [:6 "联系我们" :nav]])
 
-(defn slider
-  "内容移动方法，elem为内容所在区dom对象，index为当前内容在内容区中的索引"
-  [elem index client-width]
-  (jq/anim elem {:left  (str (- 0 (* client-width index)) "px")} "easeInOutExpo"))
+(defn display-width
+  [screen-count]
+  (str (* (get-client-width) screen-count) "px"))
 
-(defn nav-event
-  [elem-navs elem-nav elem-index]
-  (slider (jq/$ content-id) elem-index client-width)
-  (jq/remove-class elem-navs "active")
-  (jq/add-class elem-nav "active"))
+(defn render-all [state]
+  [:div {:class :main}
+   [:div {:class :mainbg}
+    [:div.mainbg1]
+    [:div.mainbg2]]
+   [:div {:class :content
+          :style {:left (str (:position state) "px")
+                  :width (display-width (count menu-nav))}}
+    (for [[index label mouse] menu-nav]
+      [:div {:class :content-wrap
+             :style {:width (display-width 1)}}
+       [:div {:class :content-in}
+        [:h1 label]]])]
+   [:div {:class :menu-nav}
+    [:ul {:class :ul-nav}
+     (for [[index label mouse] menu-nav]
+       [:li
+        [:a {:href "javascript:;"}
+         [:span {:mouse mouse :rel index} label]]])]]])
 
-(defn bind-evt
-  [el-navs el-nav el-index]
-  (let [elem-nav (jq/$ el-nav)]
-    (jq/bind elem-nav
-             :click
-             (fn []
-               (nav-event el-navs elem-nav el-index)))))
+(add-mouse-watch :nav [state first-element last-element]
+                 (when (clicked first-element last-element)
+                   (let [client-width (get-client-width)
+                         nav-index (name (get-attribute first-element :rel))
+                         move-left (* client-width (- nav-index 1))]
+                     {:position (* -1 move-left)})))
 
-(defn nav
-  "导航效果，el-navs为导航菜单dom对象,为一个集合"
-  [el-navs]
-  (doall
-   (map (partial bind-evt el-navs) el-navs (iterate inc 0)))
-  (jq/trigger (jq/$ (first el-navs)) :click))
+(launch-app (atom initial-state) render-all)
 
-(init-ui)
-(nav (jq/$ "#j_menunav li a"))
