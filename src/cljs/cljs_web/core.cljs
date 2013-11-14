@@ -3,7 +3,7 @@
             [enfocus.effects :as effects]
             [enfocus.events :as events]
             [clojure.browser.repl :as repl])
-  (:require-macros [enfocus.macros :as em]))
+  (:use-macros [enfocus.macros :only [defaction]]))
 
 (defn get-client-width []
   (.-clientWidth (.-body js/document)))
@@ -16,14 +16,14 @@
   (let [client-width (get-client-width)]
     (str (* client-width 7) "px")))
 
-(em/defaction init-size []
+(defaction init-size []
   ["#content"] (ef/set-style :width (get-container-width))
   ["#content > *.content-wrap"] (ef/set-style :width (get-screen-width)))
 
-(em/defaction remove-nav-active []
+(defaction remove-nav-active []
   "#menunav > * a" (ef/remove-class "active"))
 
-(em/defaction move-content [move-left]
+(defaction move-content [move-left]
   "#content" (effects/chain
               (effects/move (* -1 move-left) :cury 500)))
 
@@ -37,7 +37,7 @@
     (set-current-nav target)
     (move-content move-left)))
 
-(em/defaction nav []
+(defaction nav []
   ["#menunav > * a"] (events/listen :click
                                     #(set-nav (.-currentTarget %))))
 
